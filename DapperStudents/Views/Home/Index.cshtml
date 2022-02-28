@@ -1,0 +1,62 @@
+﻿@model IEnumerable<DapperStudents.Entities.Student>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+@Html.ActionLink("Ekle", "Ekle", "Student",null, new { @class = "btn btn-warning btn-xs" })
+
+<div class="card">
+    <div class="card-body">
+        <form id="filter" method="get">
+            <div class="form-group">
+                <input name="name" class="form-control" placeholder="Kurs İsmi..." />
+            </div>
+            <div class="form-group">
+                <input name="age1" class="form-control" placeholder="min" v />
+                <input name="age2" class="form-control" placeholder="max" v />
+            </div>
+            <button class="btn btn-primary">Filtrele</button>
+        </form>
+    </div>
+</div>
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>İsim</th>
+            <th>Yaş</th>
+            <th>Düzenle</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Age</td>
+            <td>
+                @Html.ActionLink("Düzenle", "Duzenle", "Student", new { id = item.Id }, new { @class = "btn btn-warning btn-xs" })
+                @Html.ActionLink("Sil", "Sil", "Student", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })
+                @Html.ActionLink("Detay", "Detay", "Student", new { id = item.Id }, new { @class = "btn btn-warning btn-xs" })
+
+
+            </td>
+        </tr>
+                }
+            
+        </tbody>
+
+</table>
+
+
+
